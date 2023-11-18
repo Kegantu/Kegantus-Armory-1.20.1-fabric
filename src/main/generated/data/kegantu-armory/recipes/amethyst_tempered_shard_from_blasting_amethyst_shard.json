@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.05,
+  "group": "smelted_shard",
+  "ingredient": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": "kegantu-armory:amethyst_tempered_shard"
+}

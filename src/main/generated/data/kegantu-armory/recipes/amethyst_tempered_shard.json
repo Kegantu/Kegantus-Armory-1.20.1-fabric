@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "kegantu-armory:layers_of_amethyst_tempered_shard"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "kegantu-armory:amethyst_tempered_shard"
+  }
+}

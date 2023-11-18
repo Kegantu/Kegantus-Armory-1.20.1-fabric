@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "kegantu-armory:layers_of_amethyst_tempered_shard"
+  },
+  "base": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "result": {
+    "item": "kegantu-armory:amethyst_alloy"
+  },
+  "template": {
+    "item": "kegantu-armory:amethyst_alloy_upgrade_smithing_template"
+  }
+}

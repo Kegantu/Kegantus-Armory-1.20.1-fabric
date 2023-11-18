@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "kegantu-armory:amethyst_tempered_shard"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "kegantu-armory:layers_of_amethyst_tempered_shard"
+  },
+  "show_notification": true
+}

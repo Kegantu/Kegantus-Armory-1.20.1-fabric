@@ -1,0 +1,21 @@
+{
+  "item.kegantu-armory.amethyst_katana" : "Amethyst Katana",
+  "tooltip.kegantu-armory.amethyst_katana": "SHIFT + RIGHT click to damage all entities in 16 block radius",
+  "item.kegantu-armory.amethyst_alloy": "Amethyst Alloy",
+  "itemGroup.kegantu-armory.kegantu-armory_group": "Kegantu's Armory",
+  "enchantment.kegantu-armory.blocking_enchantment": "Blocking",
+  "effect.kegantu-armory.bleeding": "Bleeding",
+  "death.attack.bleeding": "%1$s died from bleeding out",
+  "death.attack.bleeding.player": "%1$s died from bleeding out while trying to escape %2$s",
+  "enchantment.kegantu-armory.dash_enchantment": "Dash",
+  "enchantment.kegantu-armory.bleeding_enchantment": "Bleeding",
+  "tooltip.kegantu-armory.amethyst_tempered_shard": "You need to blast 9 amethyst shards to get this",
+  "tooltip.kegantu-armory.amethyst_tempered_shard.chance": "You only have 10% chance of getting it",
+  "item.kegantu-armory.amethyst_tempered_shard": "Amethyst Tempered Shard",
+  "item.kegantu-armory.layers_of_amethyst_tempered_shard": "Layers Of Amethyst Tempered Shard",
+  "item.kegantu-armory.smithing_template.amethyst_upgrade.additions_slot_description": "Add Layers Of Amethyst Tempered Shard",
+  "item.kegantu-armory.smithing_template.amethyst_upgrade.applies_to": "Layers Of Amethyst Tempered Shard",
+  "item.kegantu-armory.smithing_template.amethyst_upgrade.base_slot_description": "Add Netherite Ingot",
+  "item.kegantu-armory.smithing_template.amethyst_upgrade.ingredients": "Netherite Ingot",
+  "upgrade.kegantu-armory.amethyst_upgrade": "Amethyst Alloy Upgrade"
+}

@@ -1,0 +1,49 @@
+{
+	"schemaVersion": 1,
+	"id": "kegantu-armory",
+	"version": "${version}",
+	"name": "Kegantu-Armory",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Kegantu"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/kegantu-armory/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"me.kegantu.kegantu_armory.KegantuArmory"
+		],
+		"client": [
+			"me.kegantu.kegantu_armory.client.KegantuArmoryClient"
+		],
+		"fabric-datagen": [
+			"me.kegantu.kegantu_armory.KegantuArmoryDataGenerator"
+		],
+		"cardinal-components-entity": [
+			"me.kegantu.kegantu_armory.KegantuArmory"
+		]
+	},
+	"mixins": [
+		"kegantu-armory.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"kegantu-armory:katana"
+		]
+	},
+	"suggests": {
+		"another-mod": "*"
+	},
+	"accessWidener": "kegantu-armory.accesswidener"
+}

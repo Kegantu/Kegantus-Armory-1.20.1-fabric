@@ -1,0 +1,25 @@
+{
+  "amethyst_katana_sound": {
+    "sounds": [
+      "kegantu-armory:amethyst_katana_sound"
+    ]
+  },
+  "parry_sound": {
+    "sounds": [
+      "kegantu-armory:parry"
+    ]
+  },
+  "dash_sound": {
+    "sounds": [
+      "kegantu-armory:woosh_1",
+      "kegantu-armory:woosh_2",
+      "kegantu-armory:woosh_3"
+    ]
+  },
+  "slice_sound": {
+    "sounds": [
+      "kegantu-armory:slice_1",
+      "kegantu-armory:slice_2"
+    ]
+  }
+}

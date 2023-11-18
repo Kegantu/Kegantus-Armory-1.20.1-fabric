@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "minecraft:calcite"
+    },
+    "I": {
+      "item": "kegantu-armory:amethyst_tempered_shard"
+    },
+    "S": {
+      "item": "kegantu-armory:amethyst_alloy_upgrade_smithing_template"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "#C#",
+    "I#I"
+  ],
+  "result": {
+    "count": 2,
+    "item": "kegantu-armory:amethyst_alloy_upgrade_smithing_template"
+  },
+  "show_notification": true
+}

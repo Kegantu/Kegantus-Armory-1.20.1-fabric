@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_layers_of_amethyst_tempered_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "kegantu-armory:layers_of_amethyst_tempered_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:amethyst_tempered_shard"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_layers_of_amethyst_tempered_shard",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:amethyst_tempered_shard"
+    ]
+  },
+  "sends_telemetry_event": false
+}

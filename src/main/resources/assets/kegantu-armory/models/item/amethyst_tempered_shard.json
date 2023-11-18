@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "kegantu-armory:item/amethyst_tempered_shard"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "kegantu-armory:amethyst_alloy"
+    },
+    "g": {
+      "item": "kegantu-armory:amethyst_tempered_shard"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "l": {
+      "item": "kegantu-armory:layers_of_amethyst_tempered_shard"
+    },
+    "s": {
+      "item": "minecraft:netherite_sword"
+    }
+  },
+  "pattern": [
+    " gl",
+    "iag",
+    "si "
+  ],
+  "result": {
+    "item": "kegantu-armory:amethyst_katana"
+  },
+  "show_notification": true
+}

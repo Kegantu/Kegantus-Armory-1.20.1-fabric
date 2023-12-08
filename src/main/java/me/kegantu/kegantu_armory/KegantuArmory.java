@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.EmptyEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.registry.Registries;
@@ -61,7 +62,7 @@ public class KegantuArmory implements ModInitializer, EntityComponentInitializer
 				EnchantedBookItem.addEnchantment(book, new EnchantmentLevelEntry(ModEnchantments.BLOCKING_ENCHANTMENT, 1));
 				LootPool lootPool = LootPool.builder()
 						.rolls(lootTableRange)
-						.conditionally(RandomChanceLootCondition.builder(1f).build())
+						.conditionally(RandomChanceLootCondition.builder(0.3f).build())
 						.build();
 				tableBuilder.pool(lootPool);
 
@@ -69,7 +70,7 @@ public class KegantuArmory implements ModInitializer, EntityComponentInitializer
 				EnchantedBookItem.addEnchantment(book1, new EnchantmentLevelEntry(ModEnchantments.BLEEDING_ENCHANTMENT, 1));
 				LootPool lootPool1 = LootPool.builder()
 						.rolls(lootTableRange)
-						.conditionally(RandomChanceLootCondition.builder(0.3f).build())
+						.conditionally(RandomChanceLootCondition.builder(0.15f).build())
 						.build();
 				tableBuilder.pool(lootPool1);
 
@@ -77,14 +78,14 @@ public class KegantuArmory implements ModInitializer, EntityComponentInitializer
 				EnchantedBookItem.addEnchantment(book2, new EnchantmentLevelEntry(ModEnchantments.DASH_ENCHANTMENT, 1));
 				LootPool lootPool2 = LootPool.builder()
 						.rolls(lootTableRange)
-						.conditionally(RandomChanceLootCondition.builder(1f).build())
+						.conditionally(RandomChanceLootCondition.builder(0.3f).build())
 						.build();
 				tableBuilder.pool(lootPool2);
 
 				LootPool lootPool3 = LootPool.builder()
 						.rolls(lootTableRange)
-						.conditionally(RandomChanceLootCondition.builder(1f).build())
-						.with(ItemEntry.builder(ModItems.AMETHYST_ALLOY_UPGRADE_SMITHING_TEMPLATE))
+						.with(EmptyEntry.builder().weight(75))
+						.with(ItemEntry.builder(ModItems.AMETHYST_ALLOY_UPGRADE_SMITHING_TEMPLATE).weight(1))
 						.build();
 				tableBuilder.pool(lootPool3);
 			}

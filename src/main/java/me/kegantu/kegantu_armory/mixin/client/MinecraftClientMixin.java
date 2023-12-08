@@ -4,11 +4,13 @@ import me.kegantu.kegantu_armory.KegantuArmory;
 import me.kegantu.kegantu_armory.component.KatanaComponent;
 import me.kegantu.kegantu_armory.init.ModEnchantments;
 import me.kegantu.kegantu_armory.init.ModItems;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.enchantment.EnchantmentHelper;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -24,10 +26,25 @@ public class MinecraftClientMixin {
 
     @Shadow @Final public GameOptions options;
 
+    private int ticksBetweenDash = 0;
+    private boolean wasPressingActivationKey = false;
+
     @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;wasPressed()Z", ordinal = 10))
     private void katanaDash(CallbackInfo ci){
-        if (this.options.attackKey.wasPressed() && this.player != null && this.player.getMainHandStack().isOf(ModItems.AMETHYST_KATANA) && KatanaComponent.get(player).isBlocking() && EnchantmentHelper.getLevel(ModEnchantments.DASH_ENCHANTMENT, this.player.getMainHandStack()) > 0){
-            ClientPlayNetworking.send(KegantuArmory.DASH_PACKET, PacketByteBufs.empty());
+        if (this.player != null && this.player.getMainHandStack().isOf(ModItems.AMETHYST_KATANA) && KatanaComponent.get(player).isBlocking() && EnchantmentHelper.getLevel(ModEnchantments.DASH_ENCHANTMENT, this.player.getMainHandStack()) > 0){
+
+            if (ticksBetweenDash > 0) {
+                ticksBetweenDash--;
+            }
+            if (this.options.attackKey.wasPressed() && !wasPressingActivationKey) {
+                if (ticksBetweenDash > 0) {
+                    ticksBetweenDash = 0;
+                    ClientPlayNetworking.send(KegantuArmory.DASH_PACKET, PacketByteBufs.empty());
+                } else {
+                    ticksBetweenDash = 7;
+                }
+            }
+            wasPressingActivationKey = this.options.attackKey.wasPressed();
         }
     }
 }

@@ -97,7 +97,6 @@ public class KatanaComponent implements AutoSyncedComponent, CommonTickingCompon
             return false;
         }
 
-        //this.player.sendMessage(Text.literal(String.valueOf(this.player.getMainHandStack().getMaxUseTime() - this.player.getItemUseTime())));
         return this.player.getMainHandStack().getMaxUseTime() - this.player.getItemUseTimeLeft() <= 10;
     }
 
@@ -142,7 +141,6 @@ public class KatanaComponent implements AutoSyncedComponent, CommonTickingCompon
         if (!this.player.getWorld().isClient() && this.player.getMainHandStack().isOf(ModItems.AMETHYST_KATANA)){
             this.blood += blood;
             this.blood = MathHelper.clamp(this.blood, 400, 400 * 13);
-            //this.player.sendMessage(Text.literal(String.valueOf(this.blood)));
         }
         sync();
     }

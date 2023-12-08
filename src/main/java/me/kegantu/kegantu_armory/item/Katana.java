@@ -4,18 +4,17 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import me.kegantu.kegantu_armory.component.KatanaComponent;
 import me.kegantu.kegantu_armory.init.*;
+import me.kegantu.kegantu_armory.util.BleedingEffectUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.SkeletonHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +33,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
 
 public class Katana extends ToolItem {
     private final float attackDamage;
@@ -79,6 +77,7 @@ public class Katana extends ToolItem {
         World world = player.getWorld();
 
         stack.damage(1, attacker, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+        float attackCooldown = player.getAttackCooldownProgress(0.0f);
 
         world.playSound(null, attacker.getBlockPos(), ModSounds.AMETHYST_KATANA_SOUND_EVENT, SoundCategory.PLAYERS, 0.8f, 0.8f);
 
@@ -96,20 +95,24 @@ public class Katana extends ToolItem {
                 }
             }
         }
-        if (EnchantmentHelper.getLevel(ModEnchantments.BLEEDING_ENCHANTMENT, stack) > 0){
-            if (target instanceof SkeletonEntity || target instanceof SkeletonHorseEntity){
-                return false;
-            }
-            if (hasCorrectArmorOn(ArmorMaterials.LEATHER, player) || hasCorrectArmorOn(ArmorMaterials.CHAIN, player)){
-                this.randomlyApplyBleeding(target, 0.6f);
-            } else {
-                this.randomlyApplyBleeding(target, 0.2f);
-            }
-        }
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
 
         this.spawnSweepAttackParticles(world, player);
+
+        if (EnchantmentHelper.getLevel(ModEnchantments.BLEEDING_ENCHANTMENT, stack) > 0){
+            if (attackCooldown > 1.0f){
+                return false;
+            }
+            if (target instanceof SkeletonEntity || target instanceof SkeletonHorseEntity){
+                return false;
+            }
+            if (this.hasCorrectArmorOn(ArmorMaterials.LEATHER, player) || this.hasCorrectArmorOn(ArmorMaterials.CHAIN, player)){
+                BleedingEffectUtil.randomlyApplyBleeding(target, 0.6f);
+            } else {
+                BleedingEffectUtil.randomlyApplyBleeding(target, 0.2f);
+            }
+        }
         return true;
     }
 
@@ -229,14 +232,5 @@ public class Katana extends ToolItem {
         return helmet.getMaterial() == armorMaterial || chestPlate.getMaterial() == armorMaterial
                 || leggings.getMaterial() == armorMaterial
                 || boots.getMaterial() == armorMaterial;
-    }
-
-    private void randomlyApplyBleeding(LivingEntity target, float chance){
-        Random random = new Random();
-        float randomChance = 0f + random.nextFloat();
-
-        if (randomChance < chance){
-            target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.BLEEDING, 1200, target.getStatusEffect(ModStatusEffects.BLEEDING) == null ? 0 : target.getStatusEffect(ModStatusEffects.BLEEDING).getAmplifier() + 1));
-        }
     }
 }

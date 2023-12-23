@@ -71,15 +71,14 @@ public class Katana extends ToolItem {
         }
     }
 
+    // Fix Bleeding cuz its fucked
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         PlayerEntity player = (PlayerEntity) attacker;
         World world = player.getWorld();
 
-        stack.damage(1, attacker, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-        float attackCooldown = player.getAttackCooldownProgress(0.0f);
-
-        world.playSound(null, attacker.getBlockPos(), ModSounds.AMETHYST_KATANA_SOUND_EVENT, SoundCategory.PLAYERS, 0.8f, 0.8f);
+        float attackCooldown = player.getAttackCooldownProgress(0.5f);
+        player.resetLastAttackedTicks();
 
         if (!world.isClient()){
             for(LivingEntity livingEntity : player.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(1.5, 0.25, 1.5))) {
@@ -96,14 +95,14 @@ public class Katana extends ToolItem {
             }
         }
 
+        if(attackCooldown > 0.9f){
+            world.playSound(null, attacker.getBlockPos(), ModSounds.AMETHYST_KATANA_SOUND_EVENT, SoundCategory.PLAYERS, 0.8f, 0.8f);
+            this.spawnSweepAttackParticles(world, player);
+        }
+
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
 
-        this.spawnSweepAttackParticles(world, player);
-
         if (EnchantmentHelper.getLevel(ModEnchantments.BLEEDING_ENCHANTMENT, stack) > 0){
-            if (attackCooldown > 1.0f){
-                return false;
-            }
             if (target instanceof SkeletonEntity || target instanceof SkeletonHorseEntity){
                 return false;
             }
@@ -113,6 +112,8 @@ public class Katana extends ToolItem {
                 BleedingEffectUtil.randomlyApplyBleeding(target, 0.2f);
             }
         }
+
+        stack.damage(1, attacker, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
         return true;
     }
 
